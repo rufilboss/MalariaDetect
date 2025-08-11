@@ -1,0 +1,118 @@
+name: Deploy Malaria Detect
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+    
+    - name: Install dependencies
+      run: |
+        cd backend
+        pip install -r requirements.txt
+    
+    - name: Run backend tests
+      run: |
+        cd backend
+        python -m pytest tests/ -v
+    
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+        cache: 'npm'
+        cache-dependency-path: frontend/package-lock.json
+    
+    - name: Install frontend dependencies
+      run: |
+        cd frontend
+        npm ci
+    
+    - name: Run frontend tests
+      run: |
+        cd frontend
+        npm test -- --watchAll=false
+    
+    - name: Build frontend
+      run: |
+        cd frontend
+        npm run build
+
+  deploy-staging:
+    needs: test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/develop'
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Deploy to staging
+      run: |
+        echo "Deploying to staging environment..."
+        # Add your staging deployment commands here
+        # Example: Deploy to Netlify staging
+        # curl -H "Content-Type: application/zip" \
+        #      --data-binary "@frontend/build.zip" \
+        #      "https://api.netlify.com/api/v1/sites/${{ secrets.NETLIFY_SITE_ID }}/deploys?access_token=${{ secrets.NETLIFY_TOKEN }}"
+
+  deploy-production:
+    needs: test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Deploy to production
+      run: |
+        echo "Deploying to production environment..."
+        # Add your production deployment commands here
+        # Example: Deploy to Netlify production
+        # curl -H "Content-Type: application/zip" \
+        #      --data-binary "@frontend/build.zip" \
+        #      "https://api.netlify.com/api/v1/sites/${{ secrets.NETLIFY_SITE_ID }}/deploys?access_token=${{ secrets.NETLIFY_TOKEN }}"
+
+  model-retraining:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'workflow_dispatch'
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+    
+    - name: Install dependencies
+      run: |
+        cd backend
+        pip install -r requirements.txt
+    
+    - name: Retrain model
+      run: |
+        cd backend
+        python scripts/retrain_model.py
+    
+    - name: Upload new model
+      uses: actions/upload-artifact@v3
+      with:
+        name: malaria-model
+        path: backend/models/
+    
+    - name: Deploy updated model
+      run: |
+        echo "Deploying updated model..."
+        # Add model deployment commands here 
