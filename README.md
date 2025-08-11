@@ -39,7 +39,7 @@ An advanced web application for automated malaria cell classification using deep
 ## 🏗️ Architecture
 
 ```sh
-malaria-cell-classifier/
+MalariaDetect/
 ├── backend/                 # FastAPI backend
 │   ├── main.py             # Main application entry point
 │   ├── models/             # ML model and utilities
