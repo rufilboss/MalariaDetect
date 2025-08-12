@@ -139,4 +139,4 @@ vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 cell-images-for-detecting-malaria
 frontend/build
-TEAM_UPDATE_GUIDE.md
+hello.md
