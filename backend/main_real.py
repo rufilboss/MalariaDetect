@@ -39,6 +39,19 @@ model = None
 model_info = None
 model_loaded = False
 
+# Global variables for statistics tracking
+classification_stats = {
+    "total_classifications": 0,
+    "parasitized_count": 0,
+    "uninfected_count": 0,
+    "total_processing_time": 0.0,
+    "total_confidence": 0.0,
+    "processing_times": [],  # Keep last 100 processing times
+    "confidence_scores": [],  # Keep last 100 confidence scores
+    "daily_classifications": {},  # Track daily counts
+    "hourly_classifications": {}  # Track hourly counts
+}
+
 def load_model():
     """Load the trained malaria classification model"""
     global model, model_info, model_loaded
@@ -75,6 +88,39 @@ def load_model():
     except Exception as e:
         logger.error(f"❌ Error loading model: {str(e)}")
         return False
+
+def update_statistics(prediction: str, confidence: float, processing_time: float):
+    """Update global statistics with new classification result"""
+    global classification_stats
+    
+    # Update basic counts
+    classification_stats["total_classifications"] += 1
+    classification_stats["total_processing_time"] += processing_time
+    classification_stats["total_confidence"] += confidence
+    
+    # Update prediction counts
+    if prediction in ["Parasitized", "Infected"]:
+        classification_stats["parasitized_count"] += 1
+    else:
+        classification_stats["uninfected_count"] += 1
+    
+    # Update processing times (keep last 100)
+    classification_stats["processing_times"].append(processing_time)
+    if len(classification_stats["processing_times"]) > 100:
+        classification_stats["processing_times"].pop(0)
+    
+    # Update confidence scores (keep last 100)
+    classification_stats["confidence_scores"].append(confidence)
+    if len(classification_stats["confidence_scores"]) > 100:
+        classification_stats["confidence_scores"].pop(0)
+    
+    # Update daily counts
+    today = datetime.utcnow().strftime("%Y-%m-%d")
+    classification_stats["daily_classifications"][today] = classification_stats["daily_classifications"].get(today, 0) + 1
+    
+    # Update hourly counts
+    current_hour = datetime.utcnow().strftime("%Y-%m-%d-%H")
+    classification_stats["hourly_classifications"][current_hour] = classification_stats["hourly_classifications"].get(current_hour, 0) + 1
 
 def preprocess_image(image_data: bytes) -> np.ndarray:
     """Preprocess image for model prediction"""
@@ -171,6 +217,9 @@ async def classify_single_image(
         prediction, confidence = predict_malaria(image_array, use_infected_labels)
         processing_time = time.time() - start_time
         
+        # Update statistics
+        update_statistics(prediction, confidence, processing_time)
+        
         result_id = str(uuid.uuid4())
         
         return {
@@ -224,6 +273,9 @@ async def classify_batch_images(
             processing_time = time.time() - start_time
             total_processing_time += processing_time
             
+            # Update statistics
+            update_statistics(prediction, confidence, processing_time)
+            
             result_id = str(uuid.uuid4())
             results.append({
                 "result_id": result_id,
@@ -252,15 +304,48 @@ async def get_statistics():
     """
     Get API usage statistics
     """
+    global classification_stats
+    
+    # Calculate averages
+    avg_confidence = 0.0
+    avg_processing_time = 0.0
+    
+    if classification_stats["total_classifications"] > 0:
+        avg_confidence = classification_stats["total_confidence"] / classification_stats["total_classifications"]
+        avg_processing_time = classification_stats["total_processing_time"] / classification_stats["total_classifications"]
+    
+    # Get today's count
+    today = datetime.utcnow().strftime("%Y-%m-%d")
+    today_classifications = classification_stats["daily_classifications"].get(today, 0)
+    
+    # Calculate hourly averages for the last 24 hours
+    current_hour = datetime.utcnow().strftime("%Y-%m-%d-%H")
+    avg_processing_time_1h = 0.0
+    avg_processing_time_6h = 0.0
+    avg_processing_time_12h = 0.0
+    
+    if classification_stats["processing_times"]:
+        recent_times = classification_stats["processing_times"][-10:]  # Last 10 classifications
+        avg_processing_time_1h = sum(recent_times) / len(recent_times) * 1000  # Convert to ms
+        
+        # For 6h and 12h, we'll use the same recent data since we don't have historical hourly data
+        avg_processing_time_6h = avg_processing_time_1h
+        avg_processing_time_12h = avg_processing_time_1h
+    
     return {
-        "total_classifications": 0,
-        "total_users": 0,
-        "average_confidence": 0.0,
-        "average_processing_time": 0.0,
-        "parasitized_count": 0,
-        "uninfected_count": 0,
-        "today_classifications": 0,
-        "model_accuracy": model_info.get("final_val_accuracy", 0.0) if model_info else 0.0
+        "total_classifications": classification_stats["total_classifications"],
+        "total_users": 0,  # Not tracked without database
+        "average_confidence": avg_confidence,
+        "average_processing_time": avg_processing_time * 1000,  # Convert to milliseconds
+        "parasitized_count": classification_stats["parasitized_count"],
+        "uninfected_count": classification_stats["uninfected_count"],
+        "today_classifications": today_classifications,
+        "model_accuracy": model_info.get("final_val_accuracy", 0.0) if model_info else 0.0,
+        "avg_processing_time_1h": avg_processing_time_1h,
+        "avg_processing_time_6h": avg_processing_time_6h,
+        "avg_processing_time_12h": avg_processing_time_12h,
+        "recent_processing_times": classification_stats["processing_times"][-20:],  # Last 20 times
+        "recent_confidence_scores": classification_stats["confidence_scores"][-20:]  # Last 20 scores
     }
 
 @app.get("/model/status")
