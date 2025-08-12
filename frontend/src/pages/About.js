@@ -23,48 +23,48 @@ const About = () => {
   const teamMembers = [
     {
       id: 1,
-      name: "Team Member 1",
-      role: "Project Lead & Full-Stack Developer",
+      name: "Mujaheedah Olorunju Zakariyyah",
+      role: "Project Lead",
       image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
       description: "Leading the development of our AI-powered malaria detection system with expertise in machine learning and web development.",
       skills: ["Python", "React", "TensorFlow", "FastAPI"]
     },
     {
       id: 2,
-      name: "Team Member 2", 
-      role: "Machine Learning Engineer",
+      name: "Ilyas Rufai", 
+      role: "Full-Stack Engineer",
       image: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face",
       description: "Specializing in deep learning models and computer vision for medical image analysis.",
-      skills: ["TensorFlow", "OpenCV", "CNN", "Data Science"]
+      skills: ["TensorFlow", "OpenCV", "Python", "React", "TensorFlow", "FastAPI", "Data Science"]
     },
     {
       id: 3,
-      name: "Team Member 3",
-      role: "Frontend Developer",
+      name: "AdbulRahman Musa",
+      role: "Software Engineer",
       image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
       description: "Creating beautiful and intuitive user interfaces for healthcare professionals.",
       skills: ["React", "JavaScript", "CSS", "UI/UX"]
     },
     {
       id: 4,
-      name: "Team Member 4",
-      role: "Backend Developer",
+      name: "Ismail Sirajudeen Temitope",
+      role: "Software Engineer",
       image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face",
       description: "Building robust APIs and ensuring system reliability and performance.",
       skills: ["Python", "FastAPI", "PostgreSQL", "Docker"]
     },
     {
       id: 5,
-      name: "Team Member 5",
-      role: "Data Scientist",
+      name: "Makinde Sanni",
+      role: "Software Engineer",
       image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face",
       description: "Analyzing medical data and optimizing model performance for accurate diagnoses.",
       skills: ["Data Analysis", "Statistics", "Python", "Pandas"]
     },
     {
       id: 6,
-      name: "Team Member 6",
-      role: "DevOps Engineer",
+      name: "Ajirola Amudat",
+      role: "Software Engineer",
       image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=150&h=150&fit=crop&crop=face",
       description: "Managing deployment, CI/CD pipelines, and ensuring system scalability.",
       skills: ["Docker", "AWS", "GitHub Actions", "Linux"]
@@ -332,7 +332,7 @@ const About = () => {
                   <PhoneIcon className="h-6 w-6 text-blue-600" />
                 </div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">Phone</h3>
-                <p className="text-gray-600">+1 (555) 123-4567</p>
+                <p className="text-gray-600">+234 (901) 238-9838</p>
               </div>
               
               <div className="text-center">
