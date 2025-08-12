@@ -63,6 +63,12 @@ const Classifier = () => {
       });
 
       setPrediction(response.data);
+      
+      // Save result to localStorage for Results page
+      const savedResults = JSON.parse(localStorage.getItem('malariaDetectResults') || '[]');
+      savedResults.push(response.data);
+      localStorage.setItem('malariaDetectResults', JSON.stringify(savedResults));
+      
       toast.success('Classification completed!');
     } catch (error) {
       console.error('Classification error:', error);

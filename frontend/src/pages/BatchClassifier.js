@@ -80,6 +80,22 @@ const BatchClassifier = () => {
 
       const data = await response.json();
       setResults(data);
+      
+      // Save batch results to localStorage for Results page
+      const savedResults = JSON.parse(localStorage.getItem('malariaDetectResults') || '[]');
+      data.results.forEach(result => {
+        // Add batch_id to individual results for tracking
+        const resultWithBatch = {
+          ...result,
+          batch_id: data.batch_id,
+          timestamp: data.timestamp,
+          model_used: data.model_used,
+          label_type: data.label_type
+        };
+        savedResults.push(resultWithBatch);
+      });
+      localStorage.setItem('malariaDetectResults', JSON.stringify(savedResults));
+      
       toast.success(`Batch processing completed! ${data.total_images} images processed`);
     } catch (error) {
       console.error('Batch classification error:', error);
