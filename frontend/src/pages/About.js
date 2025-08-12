@@ -58,7 +58,7 @@ const About = () => {
       name: "Makinde Sanni",
       role: "Software Engineer",
       image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face",
-      description: "Analyzing medical data and optimizing model performance for accurate diagnoses.",
+      description: "AI and medical robotics enthusiast with a strong interest in data science, passionate about leveraging technology to solve real-world problems.",
       skills: ["Data Analysis", "Statistics", "Python", "Pandas"]
     },
     {
