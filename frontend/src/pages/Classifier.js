@@ -14,6 +14,7 @@ import {
 } from 'lucide-react';
 import toast from 'react-hot-toast';
 import axios from 'axios';
+import { API_ENDPOINTS } from '../config/api';
 
 const Classifier = () => {
   const [uploadedFile, setUploadedFile] = useState(null);
@@ -53,7 +54,7 @@ const Classifier = () => {
     formData.append('file', uploadedFile);
 
     try {
-      const response = await axios.post('/classify', formData, {
+      const response = await axios.post(API_ENDPOINTS.CLASSIFY, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

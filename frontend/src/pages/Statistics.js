@@ -25,6 +25,7 @@ import {
 } from 'chart.js';
 import axios from 'axios';
 import toast from 'react-hot-toast';
+import { API_ENDPOINTS } from '../config/api';
 
 // Register Chart.js components
 ChartJS.register(
@@ -48,8 +49,8 @@ const Statistics = () => {
   const fetchData = async () => {
     try {
       const [statusResponse, statsResponse] = await Promise.all([
-        axios.get('/model/status'),
-        axios.get('/stats')
+        axios.get(API_ENDPOINTS.MODEL_STATUS),
+        axios.get(API_ENDPOINTS.STATISTICS)
       ]);
       
       setModelStatus(statusResponse.data);

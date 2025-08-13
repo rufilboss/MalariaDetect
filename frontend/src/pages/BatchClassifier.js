@@ -16,6 +16,7 @@ import {
   EyeOff
 } from 'lucide-react';
 import toast from 'react-hot-toast';
+import { API_ENDPOINTS } from '../config/api';
 
 const BatchClassifier = () => {
   const [files, setFiles] = useState([]);
@@ -69,7 +70,7 @@ const BatchClassifier = () => {
       });
       formData.append('use_infected_labels', useInfectedLabels);
 
-      const response = await fetch('http://localhost:8000/classify/batch', {
+      const response = await fetch(API_ENDPOINTS.BATCH_CLASSIFY, {
         method: 'POST',
         body: formData,
       });
