@@ -19,13 +19,13 @@ import {
 } from '@heroicons/react/24/outline';
 
 const About = () => {
-  // Placeholder team data - you can update this with real information
+  // Team data with actual member images
   const teamMembers = [
     {
       id: 1,
       name: "Mujaheedah Olorunju Zakariyyah",
       role: "Project Lead",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
+      image: require("../images/mujeedah.jpg"),
       description: "Leading the development of our AI-powered malaria detection system with expertise in machine learning and web development.",
       skills: ["Python", "React", "TensorFlow", "FastAPI"]
     },
@@ -33,12 +33,20 @@ const About = () => {
       id: 2,
       name: "Ilyas Rufai", 
       role: "Full-Stack Engineer",
-      image: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face",
+      image: require("../images/rufilboss.jpg"),
       description: "Specializing in deep learning models and computer vision for medical image analysis.",
-      skills: ["TensorFlow", "OpenCV", "Python", "React", "TensorFlow", "FastAPI", "Data Science"]
+      skills: ["TensorFlow", "OpenCV", "Python", "React", "FastAPI", "Data Science"]
     },
     {
       id: 3,
+      name: "Makinde Sanni",
+      role: "Software Engineer",
+      image: require("../images/makindesanni.png"),
+      description: "AI and medical robotics enthusiast with a strong interest in data science, passionate about leveraging technology to solve real-world problems.",
+      skills: ["Data Analysis", "Statistics", "Python", "Pandas"]
+    },
+    {
+      id: 4,
       name: "AdbulRahman Musa",
       role: "Software Engineer",
       image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
@@ -46,20 +54,12 @@ const About = () => {
       skills: ["React", "JavaScript", "CSS", "UI/UX"]
     },
     {
-      id: 4,
+      id: 5,
       name: "Ismail Sirajudeen Temitope",
       role: "Software Engineer",
       image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face",
       description: "Building robust APIs and ensuring system reliability and performance.",
       skills: ["Python", "FastAPI", "PostgreSQL", "Docker"]
-    },
-    {
-      id: 5,
-      name: "Makinde Sanni",
-      role: "Software Engineer",
-      image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face",
-      description: "AI and medical robotics enthusiast with a strong interest in data science, passionate about leveraging technology to solve real-world problems.",
-      skills: ["Data Analysis", "Statistics", "Python", "Pandas"]
     },
     {
       id: 6,
@@ -324,7 +324,7 @@ const About = () => {
                   <EnvelopeIcon className="h-6 w-6 text-blue-600" />
                 </div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">Email</h3>
-                <p className="text-gray-600">contact@malariadetect.com</p>
+                <p className="text-gray-600">rufilboss@gmail.com</p>
               </div>
               
               <div className="text-center">
