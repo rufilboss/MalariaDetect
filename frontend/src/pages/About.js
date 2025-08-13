@@ -26,7 +26,7 @@ const About = () => {
       name: "Mujaheedah Olorunju Zakariyyah",
       role: "Project Lead",
       image: require("../images/mujeedah.jpg"),
-      description: "Leading the development of our AI-powered malaria detection system with expertise in machine learning and web development.",
+      description: "A Google-certified Project Management Professional (PMP). Leading the development of our AI-powered malaria detection system with expertise in machine learning and web development.",
       skills: ["Python", "React", "TensorFlow", "FastAPI"]
     },
     {
@@ -35,29 +35,30 @@ const About = () => {
       role: "Full-Stack Engineer",
       image: require("../images/rufilboss.jpg"),
       description: "Specializing in deep learning models and computer vision for medical image analysis.",
-      skills: ["TensorFlow", "OpenCV", "Python", "React", "FastAPI", "Data Science"]
+      skills: ["TensorFlow", "OpenCV", "Python", "React", "FastAPI", "Data Science", "Chart.js", "Docker"]
     },
     {
       id: 3,
-      name: "Makinde Sanni",
-      role: "Software Engineer",
-      image: require("../images/makindesanni.png"),
-      description: "AI and medical robotics enthusiast with a strong interest in data science, passionate about leveraging technology to solve real-world problems.",
-      skills: ["Data Analysis", "Statistics", "Python", "Pandas"]
-    },
-    {
-      id: 4,
       name: "AdbulRahman Musa",
       role: "Software Engineer",
-      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
+      image: require("../images/musa.png"),
+      // image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
       description: "Creating beautiful and intuitive user interfaces for healthcare professionals.",
       skills: ["React", "JavaScript", "CSS", "UI/UX"]
     },
     {
+      id: 4,
+      name: "Makinde Sanni",
+      role: "AI & ML Engineer",
+      image: require("../images/makindesanni.png"),
+      description: "AI and medical robotics enthusiast with a strong interest in data science, passionate about leveraging technology to solve real-world problems.",
+      skills: ["Data Analysis", "Statistics", "Python", "Pandas"]
+    }, 
+    {
       id: 5,
       name: "Ismail Sirajudeen Temitope",
       role: "Software Engineer",
-      image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face",
+      image: require("../images/ismail.png"),
       description: "Building robust APIs and ensuring system reliability and performance.",
       skills: ["Python", "FastAPI", "PostgreSQL", "Docker"]
     },
@@ -65,7 +66,7 @@ const About = () => {
       id: 6,
       name: "Ajirola Amudat",
       role: "Software Engineer",
-      image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=150&h=150&fit=crop&crop=face",
+      image: require("../images/ajirola.png"),
       description: "Managing deployment, CI/CD pipelines, and ensuring system scalability.",
       skills: ["Docker", "AWS", "GitHub Actions", "Linux"]
     },
