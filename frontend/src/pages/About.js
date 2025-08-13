@@ -72,9 +72,9 @@ const About = () => {
     },
     {
       id: 7,
-      name: "Team Member 7",
+      name: "Oyesowo Lekan Adewole",
       role: "UI/UX Designer",
-      image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&h=150&fit=crop&crop=face",
+      image: require("../images/lekan.png"),
       description: "Designing user experiences that make medical diagnosis accessible and efficient.",
       skills: ["Figma", "Adobe XD", "Prototyping", "User Research"]
     }
