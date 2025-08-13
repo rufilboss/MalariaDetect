@@ -27,7 +27,7 @@ const About = () => {
       role: "Project Lead",
       image: require("../images/mujeedah.jpg"),
       description: "A Google-certified Project Management Professional (PMP). Leading the development of our AI-powered malaria detection system with expertise in machine learning and web development.",
-      skills: ["Python", "React", "TensorFlow", "FastAPI"]
+      skills: ["AI & Machine Learning", "Project Management", "Business Operations", "Content & Communication"]
     },
     {
       id: 2,
@@ -35,7 +35,7 @@ const About = () => {
       role: "Full-Stack Engineer",
       image: require("../images/rufilboss.jpg"),
       description: "Develop the frontend and backend of the application, managing deployment, CI/CD pipelines, and ensuring system scalability.",
-      skills: ["TensorFlow", "OpenCV", "Python", "React", "FastAPI", "Data Science", "Chart.js", "Docker"]
+      skills: [ "AI & ML", "Frontend", "Backend", "Data Science", "Cloud", "DevOps"]
     },
     {
       id: 3,
@@ -73,10 +73,10 @@ const About = () => {
     {
       id: 7,
       name: "Oyesowo Lekan Adewole",
-      role: "UI/UX Designer",
+      role: "AI Enthusiast",
       image: require("../images/lekan.png"),
-      description: "Designing user experiences that make medical diagnosis accessible and efficient.",
-      skills: ["Figma", "Adobe XD", "Prototyping", "User Research"]
+      description: "Explores how AI and emerging tech can transform research, education, and problem-solving",
+      skills: ["AI Reaseacher", "Problem-Solving", "Data Analysis", "Data Visualization"]
     }
   ];
 
