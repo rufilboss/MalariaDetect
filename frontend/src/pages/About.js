@@ -34,7 +34,7 @@ const About = () => {
       name: "Ilyas Rufai", 
       role: "Full-Stack Engineer",
       image: require("../images/rufilboss.jpg"),
-      description: "Specializing in deep learning models and computer vision for medical image analysis.",
+      description: "Develop the frontend and backend of the application, managing deployment, CI/CD pipelines, and ensuring system scalability.",
       skills: ["TensorFlow", "OpenCV", "Python", "React", "FastAPI", "Data Science", "Chart.js", "Docker"]
     },
     {
@@ -65,9 +65,9 @@ const About = () => {
     {
       id: 6,
       name: "Ajirola Amudat",
-      role: "Software Engineer",
+      role: "UI/UX Designer",
       image: require("../images/ajirola.png"),
-      description: "Managing deployment, CI/CD pipelines, and ensuring system scalability.",
+      description: "Designing user experiences that make medical diagnosis accessible and efficient.",
       skills: ["Docker", "AWS", "GitHub Actions", "Linux"]
     },
     {
