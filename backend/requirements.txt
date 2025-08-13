@@ -16,4 +16,6 @@ celery
 pytest
 black
 flake8
-gunicorn 
+gunicorn
+PyJWT
+scipy 
